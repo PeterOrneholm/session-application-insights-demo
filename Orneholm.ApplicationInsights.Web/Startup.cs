@@ -8,7 +8,6 @@ namespace Orneholm.ApplicationInsights.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
         }
     }
 }

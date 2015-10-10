@@ -1,0 +1,36 @@
+﻿@model dynamic
+
+<h2>Calculator</h2>
+
+<form>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="name" class="form-control" value="Peter" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Date of birth:</label>
+                <input type="date" id="dateOfBirth" class="form-control" value="1991-04-14" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Result:</label>
+                <p class="form-control-static" id="output">
+                    -
+                </p>
+                <i id="loader" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary btn-block" type="submit">Calc!</button>
+</form>
+
+
+@section scripts {
+    <script src="/Scripts/calculatorApp.js"></script>
+}
