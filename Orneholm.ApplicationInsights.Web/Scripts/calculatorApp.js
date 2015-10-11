@@ -29,9 +29,7 @@
 
             $("#output").text(formatDays(days));
         }, function (error) {
-            appInsights.trackException("CalculatingAge", "Age calculator", { dateOfBirth: dateOfBirth });
-
-            throw new Error(error.responseJSON.ExceptionMessage);
+            appInsights.trackException(error.responseJSON.ExceptionMessage, "Age calculator", { dateOfBirth: dateOfBirth });
         });
     });
 }());
