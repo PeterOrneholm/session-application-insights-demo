@@ -21,11 +21,16 @@
 
         // Ask server for calculation
         $loader.show();
+
+        appInsights.trackEvent("CalculatingAge", { dateOfBirth: dateOfBirth });
+
         $.getJSON("/api/age/", { dateOfBirth: dateOfBirth }).then(function renderResult(days) {
             $loader.hide();
 
             $("#output").text(formatDays(days));
-        }, function(error) {
+        }, function (error) {
+            appInsights.trackException("CalculatingAge", "Age calculator", { dateOfBirth: dateOfBirth });
+
             throw new Error(error.responseJSON.ExceptionMessage);
         });
     });
