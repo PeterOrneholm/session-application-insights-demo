@@ -9,6 +9,11 @@ namespace Orneholm.ApplicationInsights.Api.Controllers
     {
         public async Task<Age> Get(DateTime dateOfBirth)
         {
+            if (dateOfBirth > DateTime.Now)
+            {
+                throw new ArgumentException("Can only calculate for historic dates", nameof(dateOfBirth));
+            }
+
             var age = DateTime.Now.Subtract(dateOfBirth);
 
             await Task.Delay(TimeSpan.FromMilliseconds(age.TotalDays / 2));

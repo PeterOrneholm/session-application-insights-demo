@@ -1,10 +1,9 @@
 ﻿(function () {
 
+    // Format days in a nice way
     function formatDays(days) {
         return days.toUpperCase();
     }
-
-
 
 
 
@@ -16,22 +15,18 @@
         event.preventDefault();
 
 
-        // Track event
-        //appInsights.trackEvent('AgeRequestSubmited');
-
-
-
         // Get data from form
         var dateOfBirth = $("#dateOfBirth").val();
 
 
         // Ask server for calculation
         $loader.show();
-        $.getJSON("/api/age/", { dateOfBirth: dateOfBirth }, function renderResult(days) {
+        $.getJSON("/api/age/", { dateOfBirth: dateOfBirth }).then(function renderResult(days) {
             $loader.hide();
 
             $("#output").text(formatDays(days));
-            //appInsights.trackEvent('AgeCalculationDisplayed');
+        }, function(error) {
+            throw new Error(error.responseJSON.ExceptionMessage);
         });
     });
 }());
