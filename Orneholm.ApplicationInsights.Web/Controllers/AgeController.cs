@@ -15,6 +15,11 @@ namespace Orneholm.ApplicationInsights.Web.Controllers
 
         public async Task<double> Get(DateTime dateOfBirth)
         {
+            if (dateOfBirth > DateTime.Now)
+            {
+                throw new ArgumentException("Invalid date", nameof(dateOfBirth));
+            }
+
             var age = await _poAiDemoApi.AgeCalculator.GetByDateofbirthWithOperationResponseAsync(dateOfBirth);
             return age.Body.Days ?? 0;
         }
